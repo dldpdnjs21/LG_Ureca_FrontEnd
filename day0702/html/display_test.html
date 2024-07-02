@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>inline-block테스트</title>
+    <style>
+        *{
+            margin: 0;
+        }
+        div:nth-child(3){
+            background-color: aquamarine;
+        }
+        div:nth-child(4){
+            background-color: pink;
+            width: 300px;
+        }
+        div{
+            /* 같은 줄에 나란히 표시, 가로 세로 길이 지정 X */
+            /* display: inline; */
+            
+            /* inline-block은 inline특성을 갖되 가로, 세로 길이를 지정할 수 있다 */
+            display: inline-block;
+        }
+        span{
+            background-color: purple;
+            width: 50%;
+            display: block; /* block처리를 해야 width 설정 가능 */
+        }
+    </style>
+</head>
+<!-- display_test.html -->
+ <!-- 미션 > span의 바탕색을 보라색으로 하고 span의 너비를 브라우저의 절반으로 하자 -->
+<body>
+    <h3>inline-block테스트</h3>
+    <hr>
+    <!-- 문서 안에 공백은 1칸으로 인식하고 출력된다 -->
+    <div>여기는 선릉</div><div>유레카 캠퍼스</div><br>
+    <span>현재시간은 오후 4시입니다</span>
+</body>
+</html>
