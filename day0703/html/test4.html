@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test4</title>
+</head>
+<body>
+    <img src="../img/man.jpg" alt='원빈' 
+        width="200" onclick="changeImg()" id="myImg">
+    <script>
+        var flag=true; //상태표현
+        function changeImg() {
+            console.log('call imageChange');
+            var myImg = document.getElementById('myImg');
+
+            console.log('mtImg.src=', myImg.src);
+            var idx = myImg.src.lastIndexOf('/');
+            var fileName = myImg.src.substring(idx+1); //man.jpg
+
+            if(flag)//원빈이미지라면
+            myImg.src="../img/woman.jpg";
+           else
+            myImg.src="../img/man.jpg";
+
+           flag=!flag;
+        }
+    </script>
+</body>
+</html>

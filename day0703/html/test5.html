@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test5</title>
+    <script>
+        function calc(){
+            //document.calcform.sul.value='1004'; //값설정 set
+            var su1Str=document.calcForm.su1.value; //값얻기 get
+            var su2Str=document.calcForm.su2.value; //값얻기 get
+            console.log('su1Str',su1Str);
+            console.log('su1Str의 자료형',typeof su1Str);
+
+            var f = document.calcForm; //f == form 엘리먼트
+            
+            //////////////////////////////////////////////////////////////
+            //유효성 검사 : 프로그램이 원하는 데이터가 입력되었는지 확인
+            if(su1Str=='' ||  su2Str.length==0 ){
+                alert('두개의 수를 입력!!');
+                return;
+            }
+
+            //isNaN: 숫자가 아닐때 true리턴  Not a Number
+            if( isNaN(su1Str) || isNaN(su2Str) ){
+                alert('숫자만 입력!!');
+                f.su1.value="";
+                f.su2.value="";
+                f.su1.focus();
+                return;
+            }
+            //////////////////////////////////////////////////////////////
+            var su1=parseInt(su1Str); //parseInt("23")==>23
+            var su2=parseInt(su2Str); //문자열 23을 정수형으로 변환해준다
+            console.log('su1의 자료형',typeof su1);
+            var result = plus(su1, su2);
+            f.result.value = result;
+        }
+    </script>
+    <script src="../js/myfun.js"></script>
+</head>
+<body>
+    <h3>심플계산기</h3>
+    <hr>
+    <form name="calcForm">
+        <input type="text" name="su1" size="4">
+        +
+        <input type="text" name="su2" size="4">
+        <input type="button" value="계산" onclick="calc()"><br>
+        결과값:
+        <input type="text" name="result" size="4">
+    </form>
+</body>
+</html>
