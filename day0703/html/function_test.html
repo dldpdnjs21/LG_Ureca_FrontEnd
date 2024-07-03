@@ -13,13 +13,32 @@
         function hello(){
             alert('신짜오');
         }
+
+        function hello(name){ //JS는 string과 같은 변수 타입을 명시하지 않아도 된다
+            alert('봉쥬르,'+name); //전달받은 데이터 값이 없다면 undefined
+        }
+
+        function hello(name){ //JS는 string과 같은 변수 타입을 명시하지 않아도 된다
+            if(name==undefined)
+                alert('봉쥬르');
+            else
+                alert('봉쥬르,'+name);
+        }
+
+        function hello(name){ //JS는 string과 같은 변수 타입을 명시하지 않아도 된다
+            if(name)
+                alert('봉쥬르,'+name);
+            else
+                alert('봉쥬르');
+        }
+
     </script>
 </head>
 <!-- function_test.html -->
 <body>
     <h3>함수호출테스트</h3>
     <script>
-        hello();
+        hello("전길동");
     </script>
 </body>
 </html>
