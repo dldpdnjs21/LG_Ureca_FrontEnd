@@ -43,7 +43,12 @@
             
             ==> 엘리먼트 객체 얻기
             Element ele = document.getElementById("id속성값");
+
+
+            문서조작 2) 도큐먼트(생성)/노드(조작) 객체 사용하기
+            */
             
+            /*
             var d1 = document.getElementById("d1"); //d1자료형:Element
             
             d1.innerHTML='<font color=blue size=20>느낌 오시나요?</font>';
@@ -51,7 +56,6 @@
             
             innerText는 마크업 언어를 해석하지 않고 ''의 글을 그대로 출력한다
             */
-            
             d1.innerHTML=`결과값: ${su1}+${su2}=${result}`;
         }
     </script>
@@ -71,6 +75,5 @@
         <!-- 결과값:
         <input type="text" name="result" size="4"> -->
     </form>
-    <div id="d1"></div>
 </body>
 </html>
