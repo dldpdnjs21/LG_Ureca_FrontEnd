@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM_Mission</title>
+</head>
+<body>
+    <h4>버튼 클릭 시, 1씩 증감 되는 버튼</h4>
+    <hr>
+    <span id="span1">0</span>
+    <br>
+    <button onclick="plus()">+1 증가</button>
+    <button onclick="minus()">-1 감소</button>
+    <script>
+        let number = document.getElementById('span1');
+        let plus =()=>{
+            let snumber = Number(number.innerText);
+            number.innerText=snumber+1;
+        }
+        let minus = ()=>{
+            let snumber = Number(number.innerText);
+            if(snumber > 0){
+                number.innerText=snumber-1;
+            }
+        }
+    </script>
+</body>
+</html>
