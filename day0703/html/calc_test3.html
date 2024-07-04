@@ -14,9 +14,11 @@
 
             var f = document.calcForm; //f == form 엘리먼트
             
+            var d1 = document.getElementById("d1");
+            document.getElementsByTagName('body').item(0); //body태그에 0번지, 즉 첫번째 태그 Element Node
+
             //////////////////////////////////////////////////////////////
             //유효성 검사 : 프로그램이 원하는 데이터가 입력되었는지 확인
-            var d1 = document.getElementById("d1");
             if(su1Str=='' ||  su2Str.length==0 ){
                 d1.innerHTML=`<font color=red>두개의 수를 입력!!</font>`;
                 return;
@@ -47,7 +49,13 @@
 
             문서조작 2) 도큐먼트(생성)/노드(조작) 객체 사용하기
             */
+            var divNode = document.createElement('div'); //==> <div></div>
+            var txtNode = document.createTextNode(`결과값: ${su1}+${su2}=${result}`);
             
+            //부모노드.appenChild(자식노드);
+            divNode.appendChild(txtNode); //==><div>결과값: 2+3=5</div>
+
+            d1.appendChild(divNode); //==><div id="d1"><div>결과값: 2+3=5</div></div>
             /*
             var d1 = document.getElementById("d1"); //d1자료형:Element
             
@@ -75,5 +83,6 @@
         <!-- 결과값:
         <input type="text" name="result" size="4"> -->
     </form>
+    <div id="d1"></div>
 </body>
 </html>
