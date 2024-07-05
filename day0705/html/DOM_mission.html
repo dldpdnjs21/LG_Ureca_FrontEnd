@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DOM조작테스트</title>
+<script>
+    let cnt = 0; //function 안에 들어가면 계속해서 초기화 되기 때문에 밖에서 선언
+
+    function add(){
+
+        //////////////////////////////////////////////////////////////////
+
+        //미션 1
+        // const d1 = document.getElementById('d1');//d1 자료형 : Element
+        // 불금버튼은 불변속성(const)
+        // d1.innerHTML='유레카';
+
+        //////////////////////////////////////////////////////////////////
+        
+        //미션 2
+        // const d1 = document.getElementById('d1');
+        // const divNode = document.createElement("div");
+        // const txtNode = document.createTextNode("유레카-"+ ++cnt);
+        // divNode.appendChild(txtNode); //<div>유레카</div>
+
+        // //문법) 부모노드.appendChild(자식노드);
+        // d1.appendChild(divNode);
+        // /*
+        // <div id="d1">
+        //     <div>유레카</div>
+        //     <div>유레카</div>
+        //     <div>유레카</div>
+        //     <div>유레카</div>
+        // </div>
+        // */
+
+        //////////////////////////////////////////////////////////////////
+
+        //미션 3
+        // const d1 = document.getElementById('d1');
+        // const divNode = document.createElement("div");
+        // // divNode.textContent = "유레카-"+ ++cnt;
+        // divNode.innerHTML = `유레카- ${++cnt} <button>삭제</button>`;
+
+        // //문법) 부모노드.appendChild(자식노드);
+        // d1.appendChild(divNode);
+
+        //////////////////////////////////////////////////////////////////
+    
+        //미션 4 (최종결과)
+        const d1 = document.getElementById('d1');
+        const divNode = document.createElement("div");
+        divNode.innerHTML = `유레카- ${++cnt} <button onclick="btnDelete(this)">삭제</button>`;
+        d1.appendChild(divNode);
+    }//유레카 출력 add()
+
+    function btnDelete(btn){ //delete는 예약어
+        //문법) 부모노드.removeChild(자식노드);
+        console.log('call...delete()', btn);
+        console.log('call...delete()', btn.parentNode);
+        console.log('call...delete()', btn.parentNode, btn.parentNode);
+        
+        /* remove 방법1
+        ==> const d1 = document.getElementById('d1');
+            d1.removeChild(btn.parentNode);
+        */
+
+        //remove 방법2(추천)
+        btn.parentNode.parentNode.removeChild(btn.parentNode);
+        
+    }
+</script>
+</head>
+<!-- DOM_mission.html
+    1. 버튼을 눌렀을때 브라우저에 '유레카'를 출력하시오.
+    2. 버튼을 눌렀을때 브라우저에 '유레카'를 번호와 함께 출력하시오.
+        유레카 -1
+        유레카 -2
+        유레카 -3
+        유레카 -4
+    3. " 그리고 텍스트 옆에 '삭제'버튼을 함께 출력하시오.
+    4. 두번째 삭제 버튼을 눌렀을때 누른 삭제버튼과 함께 옆의 텍스트도 삭제되도록 하시오.
+-->
+<body>
+    <!-- 버튼을 눌렀을때 add()함수를 호출해라 -->
+    <button onclick="add()">불금</button><br> 
+    <div id="d1"></div>
+</body>
+</html>
