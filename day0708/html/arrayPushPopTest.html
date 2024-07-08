@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>과일배열</title>
+</head>
+<!-- arrayPushPopTest.html -->
+<body>
+    <input type="checkbox" value="apple" name="fruit" onchange="fruitPush()">
+                        <label for="apple">사과</label><br>
+    <input type="checkbox" value="strawberry" name="fruit" onchange="fruitPush()">
+                        <label for="strawberry">딸기</label><br>
+    <input type="checkbox" value="watermelon" name="fruit" onchange="fruitPush()">
+                        <label for="watermelon">수박</label><br>
+    <div></div>
+
+    <script>
+        // let fruitArr=['apple','strawberry','watermelon'];
+        let displayArr=[];
+        const fruitCheckbox = document.querySelectorAll('[name=fruit]');
+
+        let div = document.querySelector('div');
+        function fruitPush(){
+            //이전 배열값 전체 지우기
+            fruitClearAll();
+
+            for(fruit of fruitCheckbox){
+                if(fruit.checked){
+                    displayArr.push('<li>'+fruit.value+'</li>');
+                }
+            
+            }
+            div.innerHTML='<ul>'+displayArr.join('')+'</ul>';
+        }
+
+        function fruitClearAll(){
+            if(displayArr.length){//요소가 한개라도 있다면
+                while(displayArr.length){//요소가 있을때까지 삭제
+                    displayArr.pop();
+                }
+            }
+        }
+    </script>
+</body>
+</html>
