@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BOM::location</title>
-  <link rel="stylesheet" href="/bootstrap-5.3.2-dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../bootstrap-5.3.2-dist/css/bootstrap.min.css">
 </head>
 <body>
   <div class="container">
@@ -54,9 +54,17 @@
     document.querySelector('#protocol').innerText = location.protocol;
 
     document.querySelector('.btn').onclick = function() {
-      location.assign('https://www.booksr.co.kr');
+      // location.assign('https://www.booksr.co.kr');
 
-      // location.replace('https://www.booksr.co.kr');
+      // location.replace('https://www.booksr.co.kr'); 
+      // location.href('https://www.booksr.co.kr');
+      location.reload(); 
+      
+      //location.();
+      //assign은 히스토리를 남기고,
+      //replace는 히스토리 없이 새로 페이지를 갈아끼운다.
+      //href는 assign과 동일 기능
+      //reload는 파라미터 값을 적지 않고, 현재 페이지 재호출(리로딩)
     }
   </script>
 </body>
