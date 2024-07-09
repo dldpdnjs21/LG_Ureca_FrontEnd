@@ -33,11 +33,13 @@
 
           let listGroup = '';
           for (let list of lists) {
-            console.log(list);
-            console.log(list.childNodes);
-            console.log(typeof list.childNodes[0], list.childNodes[0]);
-            console.log(typeof list.childNodes[0].nodeValue, list.childNodes[0].nodeValue);
-            let title = list.childNodes[0].nodeValue;
+            // console.log(list);
+            // console.log(list.childNodes);
+            // console.log(typeof list.childNodes[0], list.childNodes[0]);
+            // console.log(typeof list.childNodes[0].nodeValue, list.childNodes[0].nodeValue);
+            
+            // let title = list.childNodes[0].nodeValue;
+            let title = list.textContent;
             listGroup += '<li class="list-group-item">' + title + '</li>';
           }
 
