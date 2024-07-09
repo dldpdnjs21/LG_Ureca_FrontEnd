@@ -5,11 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ajax Test</title>
     <script>
+        const xhr = new XMLHttpRequest();
+
         function hello(){
-            const str='안녕, 유레카';
-            const div = document.querySelector("div"); //div자료형 : Element
-            div.innerHTML=str;
+            //xhr.open("HTTP요청방식","요청URL");
+            // xhr.open("GET","http://10.4.2.100:8080/res.jsp"); //서버 호출
+            xhr.open("GET", "/day0709/user.txt"); //user.txt 호출
+            // xhr.onreadystatechange = 콜백함수;
+            xhr.onreadystatechange = changeDiv;
+            xhr.send(null);
+
+        }//hello
+
+        function changeDiv(){
+            // alert("xhr.readyState:"+xhr.readyState);
+
+            if(xhr.readyState==4 && xhr.status==200){
+                // const str='안녕, 유레카';
+                const str = xhr.responseText;
+
+                //문서조작
+                const div = document.querySelector("div"); //div자료형 : Element
+                div.innerHTML=str;
+            }
         }
+
     </script>
 </head>
 <!-- helloAjax.html -->

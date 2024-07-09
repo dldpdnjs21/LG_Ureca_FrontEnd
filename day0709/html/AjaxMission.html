@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AjaxMission</title>
+
+    <script>
+        const xhr = new XMLHttpRequest();
+        function hello(){
+            xhr.open("GET","/day0709/ureca.txt");
+            xhr.onreadystatechange = changeDiv;
+            xhr.send(null);
+        }//hello
+
+        function changeDiv(){
+            // alert("xhr.readyState:"+xhr.readyState);
+
+            if(xhr.readyState==4 && xhr.status==200){
+                // const str='안녕, 유레카';
+                const str = xhr.responseText;
+
+                //문서조작
+                const div = document.querySelector("div"); //div자료형 : Element
+                div.innerHTML=str;
+            }
+        }//changeDiv
+
+        function menuChoice(){
+            xhr.open("GET","http://10.4.2.100:8080/food.jsp");
+            xhr.onreadystatechange = function(){
+            if(xhr.readyState==4 && xhr.status==200){
+            //   const str = xhr.responseText; //str자료형: string
+                const strArr = xhr.responseText.trim().split(','); //strArr자료형: string[]
+
+                let foods='<ul>';
+                strArr.forEach(function(menu){
+                    foods+="<li>"+menu+"</li>"
+                });
+                foods+='</ul>';
+ 
+                const div = document.querySelector("div"); //div자료형: Element
+                div.innerHTML=foods;
+          }            
+        };
+        xhr.send(null);
+      }//menuChoice
+    </script>
+</head>
+<!-- AjaxMission.html -->
+<body>
+    <h3>AjaxMission</h3>
+    <hr>
+    <div></div>
+    <button onclick="hello()">눌러요</button>
+    <button onclick="menuChoice()">희망메뉴</button>
+
+<!--
+        <미션>
+        "희망메뉴" 버튼을 클릭하면 서버에 데이터를 요청하여
+        현 페이지 div에 순서없는 목록으로 출력하시고,
+        ==> 서버 데이터 페이지 : food.jsp
+-->
+
+</body>
+</html>
