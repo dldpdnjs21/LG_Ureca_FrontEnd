@@ -1,10 +1,170 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>lotto</title>
 </head>
+<style>
+    body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin: 0;
+    }
+    h3, button{
+        text-align: center;
+    }
+    button{
+        padding: 8px 12px;
+        border: none;
+        border-radius: 5px;
+        background-color: violet;
+        color: purple;
+    }
+    .num_field{
+        background-color: lightgray;
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+        width: 450px;
+        height: 150px;
+    }
+    .num_area{
+        display: flex;
+        justify-content: center;
+    }
+    table{
+        margin: auto;
+        border-collapse: separate;
+        border-spacing: 10px;
+    }
+    table td{
+        margin: 20px;
+        width: 50px;
+        height: 50px;
+        text-align: center;
+        border-radius: 50%;
+        line-height: 50px;
+        font-size: 20px;
+        font-weight: bold;
+        color: black;
+
+    }
+    .one {
+        background-color: rgb(237, 109, 82);
+    }
+    .two{
+        background-color: rgb(237, 211, 82);
+    }
+    .three {
+        background-color: rgb(191, 253, 91);
+    }
+    .four {
+        background-color: rgb(230, 254, 255);
+    }
+    .five {
+        background-color: rgb(212, 162, 217);
+    }
+    .log_area {
+        margin-top: 20px;
+        width: 450px;
+        max-width: 600px;
+        max-height: 300px;
+        overflow-y: auto;
+    }
+    .log_entry {
+        background: #f9f9f9;
+        padding: 10px;
+        margin: 5px 0;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+</style>
 <body>
-$END$
+    <h3>이번주 로또 예상번호</h3>
+    <button onclick="Numbers()">번호생성</button>
+    <div class="num_field">
+        <div class="num_area">
+            <table>
+                <tr>
+                    <td id="num1"></td>
+                    <td id="num2"></td>
+                    <td id="num3"></td>
+                    <td id="num4"></td>
+                    <td id="num5"></td>
+                    <td id="num6"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="log_area" id="log_area"></div>
 </body>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        loadLogs();
+    });
+    function Numbers(){
+        const numbers = [];
+        while(numbers.length < 6){
+            const num = Math.floor(Math.random()*45)+1;
+            if(!numbers.includes(num)) {
+                numbers.push(num);
+            }
+        }
+        numbers.sort((a, b) => a - b);
+        for(let i=0; i<6; i++){
+            const numCell = document.getElementById(`num${i+1}`);
+            numCell.textContent = numbers[i];
+            numCell.className = ``;
+            if(numbers[i]<=9){
+                numCell.classList.add('one');
+            } else if(numbers[i]<=19){
+                numCell.classList.add('two');
+            } else if(numbers[i]<=29){
+                numCell.classList.add('three');
+            } else if(numbers[i]<=39){
+                numCell.classList.add('four');
+            } else {
+                numCell.classList.add('five');
+            }
+        }
+        saveLog(numbers);
+    }
+    function saveLog(numbers) {
+        const now = new Date();
+        const timestamp = now.getFullYear() + '-' +
+            String(now.getMonth() + 1).padStart(2, '0') + '-' +
+            String(now.getDate()).padStart(2, '0') + ' ' +
+            String(now.getHours()).padStart(2, '0') + ':' +
+            String(now.getMinutes()).padStart(2, '0');
+        const logEntry = `${timestamp} [${numbers.join(', ')}]`;
+
+        let logs = JSON.parse(localStorage.getItem('lottoLogs')) || [];
+        logs.push(logEntry);
+        localStorage.setItem('lottoLogs', JSON.stringify(logs));
+
+        displayLog(logEntry);
+    }
+
+    function loadLogs() {
+        let logs = JSON.parse(localStorage.getItem('lottoLogs')) || [];
+        logs.forEach(log => {
+            displayLog(log);
+        });
+    }
+
+    function displayLog(logEntry) {
+        const logArea = document.getElementById('log_area');
+        if (!logArea) {
+            console.error('log_area element not found');
+            return;
+        }
+        const logDiv = document.createElement('div');
+        logDiv.className = 'log_entry';
+        logDiv.textContent = logEntry;
+        logArea.appendChild(logDiv);
+        logDiv.scrollIntoView({behavior:'smooth'});
+    }
+</script>
 </html>

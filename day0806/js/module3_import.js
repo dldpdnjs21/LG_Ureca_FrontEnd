@@ -1,3 +1,4 @@
-import {title,add} from './module2_export.js';
-console.log(add(10,2));
-console.log(title);
+import ureca from './module3_export.js';
+
+console.log(ureca.title);
+console.log(ureca.add(30,20));
